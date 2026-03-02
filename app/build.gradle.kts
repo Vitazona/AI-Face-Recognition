@@ -38,8 +38,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.camera.core)
+    implementation(libs.camera.view)
+    implementation(libs.camera.lifecycle)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("androidx.camera:camera-camera2:1.5.3")      // ← ADD THIS
+    implementation("com.google.guava:guava:31.1-android")    // ← ADD THIS
 }
