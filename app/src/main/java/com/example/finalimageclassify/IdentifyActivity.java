@@ -207,13 +207,19 @@ public class IdentifyActivity extends AppCompatActivity {
         String bestName     = "Unknown";
         float  bestDistance = Float.MAX_VALUE;
 
+        android.util.Log.d("FaceID", "======= MATCHING DISTANCES =======");
         for (FaceStorageHelper.FaceRecord record : records) {
             float distance = EmbeddingHelper.euclideanDistance(queryEmbedding, record.embedding);
+            android.util.Log.d("FaceID", "  vs '" + record.name + "' distance: " + String.format("%.4f", distance));
             if (distance < bestDistance) {
                 bestDistance = distance;
                 bestName     = record.name;
             }
         }
+        android.util.Log.d("FaceID", "  Best: '" + bestName + "' @ " + String.format("%.4f", bestDistance));
+        android.util.Log.d("FaceID", "  Threshold: " + RECOGNITION_THRESHOLD);
+        android.util.Log.d("FaceID", "  Confidence: " + String.format("%.1f", EmbeddingHelper.distanceToConfidence(bestDistance)) + "%");
+        android.util.Log.d("FaceID", "==================================");
 
         // Apply threshold
         if (bestDistance > RECOGNITION_THRESHOLD) {
